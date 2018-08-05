@@ -20,7 +20,7 @@ The sensor signals (accelerometer and gyroscope) were pre-processed by applying 
 For more information about this dataset contact: activityrecognition@smartlab.ws
 
 #Code
-##filtering out only mean and standard-deviation columns for all variables  
+#filtering out only mean and standard-deviation columns for all variables  
 x_test <- x_test[,(grepl("*mean()",features$V2)
             &!grepl("*meanFreq()",features$V2))
             |grepl("*std()",features$V2)]
