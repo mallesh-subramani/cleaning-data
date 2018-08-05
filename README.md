@@ -3,7 +3,7 @@
 
 Human Activity Recognition Using Smartphones Dataset
 Version 1.0
-
+===
 Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, Luca Oneto.
 Smartlab - Non Linear Complex Systems Laboratory
 DITEN - Università degli Studi di Genova.
@@ -18,7 +18,7 @@ The sensor signals (accelerometer and gyroscope) were pre-processed by applying 
 
 For more information about this dataset contact: activityrecognition@smartlab.ws
 
-#Code
+Code
 ======
 #filtering out only mean and standard-deviation columns for all variables  
 x_test <- x_test[,(grepl("*mean()",features$V2)
@@ -28,15 +28,15 @@ x_train <- x_train[,(grepl("*mean()",features$V2)
                    &!grepl("*meanFreq()",features$V2))
                  |grepl("*std()",features$V2)]
 
-##creating the test data frame
+#creating the test data frame
 test <- data.frame("activity"=y_test,
                    "subjects"=subject_test,x_test)
 
-##creating the train data frame
+#creating the train data frame
 train <- data.frame("activity"=y_train,
                     "subjects"=subject_train,x_train,fix.empty.names = FALSE)
 
-##combining test and train data frame to form one data
+#combining test and train data frame to form one data
 data <- rbind.data.frame(test,train)
 
 colnames(data) <- c("activity","subjects",
@@ -44,14 +44,14 @@ colnames(data) <- c("activity","subjects",
                     &!grepl("*meanFreq()",features$V2)
                     |grepl("*std()",features$V2))]))
 
-##writing the obtained data to a csv file
+#writing the obtained data to a csv file
 write.csv(data,file="tidy_data.csv")
 
 The above code is used to obtain the data from train and test data sets and to merge it to on data set and write the obtained data to a csv file.
 
-#Code
+Code
 =======
-##Calculating the averages for each activity and subject for all available variables
+#Calculating the averages for each activity and subject for all available variables
 for (i in 1:30) {
   w <- sapply(data1$WALKING[data1$WALKING$subjects==i
                                   ,3:length(names(data))], mean)
@@ -85,7 +85,7 @@ for (i in 1:30) {
   
 }
 
-##setting the column names for the obtained data
+#setting the column names for the obtained data
 colnames(walking) <- names(data[3:68])
 colnames(walking_upstairs) <- names(data[3:68])
 colnames(walking_downstairs) <- names(data[3:68])
@@ -93,7 +93,7 @@ colnames(sitting) <- names(data[3:68])
 colnames(standing) <- names(data[3:68])
 colnames(laying) <- names(data[3:68])
 
-##coercing the obtained data frame with all required columns
+#coercing the obtained data frame with all required columns
 walking <- data.frame(activity="WALKING",subject=1:30,walking)
 walking_upstairs <- data.frame(activity="WALKING_UPSTAIRS",subject=1:30,walking_upstairs)
 walking_downstairs <- data.frame(activity="WALKING_DOWNSTAIRS",subject=1:30,walking_downstairs)
@@ -101,12 +101,12 @@ sitting <- data.frame(activity="SITTING",subject=1:30,sitting)
 standing <- data.frame(activity="STANDING",subject=1:30,standing)
 laying <- data.frame(activity="LAYING",subject=1:30,laying)
 
-##combining the obtained variables into one data frame
+#combining the obtained variables into one data frame
 data2 <- rbind.data.frame(walking,walking_upstairs,walking_downstairs
                           ,sitting,standing,laying)
 colnames(data2) <- c("activity","subjects",names(data[3:68]))
 
-##writing the obtained data to a csv file
+#writing the obtained data to a csv file
 write.csv(data2,"tidy_data_average.csv")
 
 
@@ -114,7 +114,7 @@ The second code above is used to find the average for each variables based on th
 
 
 
-#Acknowledgements:
+Acknowledgements:
 ==================
 
 
