@@ -23,18 +23,18 @@ Code
 #filtering out only mean and standard-deviation columns for all variables  
 x_test <- x_test[,(grepl("*mean()",features$V2)
             &!grepl("*meanFreq()",features$V2))
-            |grepl("*std()",features$V2)]
+            |grepl("*std()",features$V2)]<br />
 x_train <- x_train[,(grepl("*mean()",features$V2)
                    &!grepl("*meanFreq()",features$V2))
-                 |grepl("*std()",features$V2)]
+                 |grepl("*std()",features$V2)]<br />
 
 #creating the test data frame
 test <- data.frame("activity"=y_test,
-                   "subjects"=subject_test,x_test)
+                   "subjects"=subject_test,x_test)<br />
 
 #creating the train data frame
 train <- data.frame("activity"=y_train,
-                    "subjects"=subject_train,x_train,fix.empty.names = FALSE)
+                    "subjects"=subject_train,x_train,fix.empty.names = FALSE)<br />
 
 #combining test and train data frame to form one data
 data <- rbind.data.frame(test,train)
@@ -42,7 +42,7 @@ data <- rbind.data.frame(test,train)
 colnames(data) <- c("activity","subjects",
                     as.character(features$V2[(grepl("*mean()",features$V2)
                     &!grepl("*meanFreq()",features$V2)
-                    |grepl("*std()",features$V2))]))
+                    |grepl("*std()",features$V2))]))<br />
 
 #writing the obtained data to a csv file
 write.csv(data,file="tidy_data.csv")
@@ -54,32 +54,32 @@ Code
 #Calculating the averages for each activity and subject for all available variables
 for (i in 1:30) {
   w <- sapply(data1$WALKING[data1$WALKING$subjects==i
-                                  ,3:length(names(data))], mean)
+                                  ,3:length(names(data))], mean)<br />
   wal <- as.data.frame(w)
   walking <- rbind.data.frame(walking,wal$w)
   
   walking_u <- sapply(data1$WALKING_UPSTAIRS[data1$WALKING_UPSTAIRS$subjects==i
-                                                    ,3:length(names(data))], mean)
+                                                    ,3:length(names(data))], mean)<br />
   walking_ups <- as.data.frame(walking_u)
   walking_upstairs <- rbind.data.frame(walking_upstairs,walking_ups$walking_u)
   
   walking_d <- sapply(data1$WALKING_DOWNSTAIRS[data1$WALKING_DOWNSTAIRS$subjects==i
-                                                      ,3:length(names(data))], mean)
+                                                      ,3:length(names(data))], mean)<br />
   walking_dow <- as.data.frame(walking_d)
   walking_downstairs <- rbind.data.frame(walking_downstairs,walking_dow$walking_d)
   
   s <- sapply(data1$SITTING[data1$SITTING$subjects==i
-                                             ,3:length(names(data))], mean)
+                                             ,3:length(names(data))], mean)<br />
   sit <- as.data.frame(s)
   sitting <- rbind.data.frame(sitting,sit$s)
 
   st <- sapply(data1$STANDING[data1$STANDING$subjects==i
-                                   ,3:length(names(data))], mean)  
+                                   ,3:length(names(data))], mean)<br />  
   stand <- as.data.frame(st)
   standing <- rbind.data.frame(standing,stand$st)
   
   l <- sapply(data1$LAYING[data1$LAYING$subjects==i
-                                  ,3:length(names(data))], mean)  
+                                  ,3:length(names(data))], mean)<br />  
   lay <- as.data.frame(l)
   laying <- rbind.data.frame(laying,lay$l)
   
@@ -103,7 +103,7 @@ laying <- data.frame(activity="LAYING",subject=1:30,laying)
 
 #combining the obtained variables into one data frame
 data2 <- rbind.data.frame(walking,walking_upstairs,walking_downstairs
-                          ,sitting,standing,laying)
+                          ,sitting,standing,laying)<br />
 colnames(data2) <- c("activity","subjects",names(data[3:68]))
 
 #writing the obtained data to a csv file
